@@ -95,36 +95,7 @@
                 <div class="row sm-gutter">
                   <!-- Product item -->
                    
-                  <?php  
-function timeAgo($datetime) {  
-      
-    // Chuyển đổi thời gian đã cho thành timestamp  
-    $timestamp = strtotime($datetime);  
-    // Thời gian hiện tại  
-    $now = time();  
-    // Tính toán khoảng thời gian  
-    $diff = $now - $timestamp;  
-
-    // Xác định đơn vị thời gian  
-    if ($diff < 60) {  
-        return $diff . ' giây trước';  
-    } elseif ($diff < 3600) { // 60 giây * 60 phút  
-        $minutes = floor($diff / 60);  
-        return $minutes . ' phút trước';  
-    } elseif ($diff < 86400) { // 60 giây * 60 phút * 24 giờ  
-        $hours = floor($diff / 3600);  
-        return $hours . ' giờ trước';  
-    } elseif ($diff < 604800) { // 60 giây * 60 phút * 24 giờ * 7 ngày  
-        $days = floor($diff / 86400);  
-        return $days . ' ngày trước';  
-    } else {  
-        $weeks = floor($diff / 604800);  
-        return $weeks . ' tuần trước';  
-    }  
-}  
-
- 
-?>
+                  
                   @if(isset($allcategorynews) && count($allcategorynews) > 0)  
                   @foreach($allcategorynews as $news)
                   <div class="col l-2-4 m-4 c-6">

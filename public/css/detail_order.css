@@ -1,0 +1,193 @@
+
+
+.container {  
+    font-size: 15px;
+    height: 600px; 
+    font-family: Arial, sans-serif;  
+    background: #fff;  
+    border-radius: 5px;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+    padding: 20px;  
+    max-width: 900px;  
+    margin: auto;  
+} 
+
+.confirm{
+    border-color: #ffffff00;
+    color: white;
+    background: #b20000;
+    border-radius: 10px;
+    width: 150px;
+    padding: 7px;
+}
+
+
+.head h1 {  
+    font-size: 1.5em;  
+    margin: 0;  
+}  
+
+.summary {  
+    margin-top: 20px;  
+}  
+
+.row {  
+    display: flex;  
+    justify-content: space-between;  
+    padding: 10px 0;  
+    border-bottom: 1px solid #eee;  
+}  
+
+.row:last-child {  
+    border-bottom: none;  
+}  
+
+.price {  
+    color: #000;  
+}  
+
+.discount {  
+    color: red;  
+}  
+
+.total {  
+    font-weight: bold;  
+}  
+
+.total-price {  
+    color: red;  
+}  
+
+.payment-method {  
+    margin-left: 650px;
+    margin-top: 20px;  
+    font-weight: bold;  
+}
+.name{
+    margin-left: 50px;
+}
+.news{
+    height: 100px;
+    display: flex;
+    align-items: center;
+    box-sizing: inherit;
+}
+.news-img{
+    width: 100px;
+    height: 100px;
+    margin: 12px;
+    border: 1px solid var(--border-color);
+}
+.tieude{
+    color: #000c7e;
+    font-size: 20;
+    margin-top: -30px;
+}
+.price-day{
+    font-weight: bold;
+    color: #900000;
+
+}
+
+/*  Modal lý do hủy */
+
+.modal-content {
+    font-size: 13px;
+    background-color: #d1e9ff; 
+    border-radius: 8px; 
+    border: none; 
+    box-shadow: 0 4px 15px rgba(177, 216, 255, 0.2); /* Hiệu ứng bóng */
+  }
+  
+  /* Tiêu đề của modal */
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40; /* Màu xám đậm */
+  }
+  
+  /* Nút đóng */
+  .modal-header .btn-close {
+    background-color: #ff6b6b; /* Màu đỏ nhạt */
+    border-radius: 50%;
+    padding: 8px;
+  }
+  
+  .modal-header .btn-close:hover {
+    background-color: #fa5252; /* Màu đỏ đậm hơn khi hover */
+  }
+  
+  /* Input */
+  .modal-body input.form-control {
+    width: 200px;
+    border: 1px solid #ced4da; 
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  .modal-body input.form-control:focus {
+    border-color: #80bdff; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+  }
+  
+  /* Nút trong footer */
+  .modal-footer .btn-secondary {
+    background-color: #adb5bd; 
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .modal-footer .btn-secondary:hover {
+    background-color: #868e96; 
+  }
+  
+  .modal-footer .btn-primary {
+    margin-left: 10px;
+
+    color: #ffffff;
+    background-color: #0600ac; 
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .modal-footer .btn-primary:hover {
+    background-color: #0074f0; 
+  }
+  
+ 
+  .modal-dialog {
+    max-width: 500px; 
+    margin: 30px auto; 
+  }
+  
+ 
+  .modal-body {
+    padding: 30px;
+    text-align: center;
+  }
+
+  /* Overlay modal */
+.overlay1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Hiệu ứng mờ */
+    display: none; /* Mặc định ẩn */
+    justify-content: center;
+    align-items: center;
+    z-index: 1050;
+  }
+  
+  /* Modal dialog */
+  .modal-dialog1 {
+    max-width: 500px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+  }
+  
+  

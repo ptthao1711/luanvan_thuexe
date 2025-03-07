@@ -1,0 +1,78 @@
+body {  
+    font-family: Arial, sans-serif;  
+    background-color: #f4f4f4;  
+    margin: 0;  
+    padding: 20px;  
+}  
+
+.container {  
+    font-size: 15px;
+    display: flex;  
+    max-width: 1200px;  
+    margin: auto;  
+    background: #fff;  
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+    border-radius: 8px;  
+}  
+
+.user-info {  
+    flex: 1;  
+    padding: 20px;  
+    border-right: 1px solid #ddd;  
+}  
+.user-info div{
+    margin-bottom: 10px;
+}
+
+.user-info img.avatar {  
+    width: 100px;  
+    border-radius: 50%;  
+}  
+
+.follow-button {  
+    margin-bottom: 30px;
+    background-color: #ff9800;  
+    color: white;  
+    border: none;  
+    padding: 10px;  
+    cursor: pointer;  
+    border-radius: 5px;  
+}  
+
+.property-list {  
+    flex: 2;  
+    padding: 20px;  
+}  
+
+.property-item {  
+    display: flex;  
+    margin-bottom: 20px;  
+    background: #f9f9f9;  
+    border: 1px solid #ddd;  
+    border-radius: 5px;  
+    padding: 10px;  
+}  
+
+.property-item img {  
+    width: 100px;  
+    height: 100px;  
+    margin-right: 10px;  
+    border-radius: 5px;  
+}  
+
+.property-info {  
+    flex: 1;  
+}  
+.property-info p{
+    font-weight: bold;
+}
+
+.price {  
+    color: #cc0000;  
+    font-weight: bold;  
+}  
+
+.time {  
+    font-size: 12px;  
+    color: #777;  
+}

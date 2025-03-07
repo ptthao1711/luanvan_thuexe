@@ -1,0 +1,3 @@
+Lệnh cập nhật trạng thái tin cho những tin đã hết hạn.
+
+php artisan tinthuexe:update-status

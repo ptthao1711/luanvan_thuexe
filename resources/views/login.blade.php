@@ -1,29 +1,19 @@
 
 <link href="{{asset('css/login.css')}}" rel="stylesheet" />
 <script src="{{asset('js/boot.js')}}" type="text/javascript"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 <div class="container" id="container">
-  <title>Login</title>
-	<div class="form-container sign-up-container">
-		<form action="signup.blade.php">
-			<h1>Create Account</h1>
-			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f" style = "background-image: url('images/ic/bell.png');"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-			</div>
-			<span>or use your email for registration<</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email/Số điện thoai/Tên Đăng Nhập" />
-			<input type="password" placeholder="Mật Khẩu" />
-			<button>Đăng Ký</button>
-		</form>
-	</div>
+<title>Login</title>
+<link rel="icon" href="images/logo2.png">
+	
 	<div class="form-container sign-in-container">
 		<form action="{{URL::to('/user_home')}}" method="post">
 			<h1>Đăng Nhập</h1>
 			<div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			
+			<a href="#" class="social"><i class="fab fa-facebook-f" style="font-size:20px; color: #0000d0;"></i></a>
+			<a href="{{ route('login.google') }}"  class="social"><i class="fab fa-google"style="font-size:20px; color: #bc0000;" ></i></a>
 			</div>
 			<span>Hoặc,đăng nhập bằng</span>
 			{{ csrf_field( )}}
@@ -49,14 +39,11 @@
 				<button class="ghost" id="signIn">Sign In</button>
 			</div>
 			<div class="overlay-panel overlay-right">
-				<h1>Hello, Friend!</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button class="ghost" id="signUp">Đăng Ký</button>
+				<h1>Chào bạn!</h1>
+				<p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình mới cùng chúng tôi</p>
+				<button class="ghost" id="signUp" onclick="window.location.href='/dangky'">Đăng Ký</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<footer>
-	
-</footer>

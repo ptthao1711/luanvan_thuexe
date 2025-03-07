@@ -1,186 +1,50 @@
-(function($) {
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.stars span');
+    const ratingValue = document.getElementById('rating-value');
+    const ratingText = document.getElementById('rating-text');
+    const mucDoInput = document.getElementById('mucdo'); // Input ẩn để lưu MUCDO
 
-  "use strict";
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            // Lấy giá trị đánh giá từ ngôi sao đã click
+            const rating = this.getAttribute('data-value');
+            
+            // Reset tất cả các ngôi sao về màu mặc định (đen)
+            stars.forEach(s => {
+                s.classList.remove('active');
+            });
+            
+            // Đổi màu các ngôi sao đến mức được click (màu vàng)
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('active');
+            }
 
-  var initPreloader = function() {
-    $(document).ready(function($) {
-    var Body = $('body');
-        Body.addClass('preloader-site');
-    });
-    $(window).load(function() {
-        $('.preloader-wrapper').fadeOut();
-        $('body').removeClass('preloader-site');
-    });
-  }
+            // Hiển thị giá trị đánh giá (nếu cần)
+            ratingValue.innerHTML = `${rating} sao`;
 
-  // init Chocolat light box
-	var initChocolat = function() {
-		Chocolat(document.querySelectorAll('.image-link'), {
-		  imageSize: 'contain',
-		  loop: true,
-		})
-	}
+            // Cập nhật input ẩn với giá trị MUCDO
+            mucDoInput.value = rating;
 
-  var initSwiper = function() {
-
-    var swiper = new Swiper(".main-swiper", {
-      speed: 500,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-
-    var bestselling_swiper = new Swiper(".bestselling-swiper", {
-      slidesPerView: 4,
-      spaceBetween: 30,
-      speed: 500,
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-        },
-        768: {
-          slidesPerView: 3,
-        },
-        991: {
-          slidesPerView: 4,
-        },
-      }
-    });
-
-    var testimonial_swiper = new Swiper(".testimonial-swiper", {
-      slidesPerView: 1,
-      speed: 500,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-
-    var products_swiper = new Swiper(".products-carousel", {
-      slidesPerView: 4,
-      spaceBetween: 30,
-      speed: 500,
-      breakpoints: {
-        0: {
-          slidesPerView: 1,
-        },
-        768: {
-          slidesPerView: 3,
-        },
-        991: {
-          slidesPerView: 4,
-        },
-
-      }
-    });
-
-  }
-
-  var initProductQty = function(){
-
-    $('.product-qty').each(function(){
-
-      var $el_product = $(this);
-      var quantity = 0;
-
-      $el_product.find('.quantity-right-plus').click(function(e){
-          e.preventDefault();
-          var quantity = parseInt($el_product.find('#quantity').val());
-          $el_product.find('#quantity').val(quantity + 1);
-      });
-
-      $el_product.find('.quantity-left-minus').click(function(e){
-          e.preventDefault();
-          var quantity = parseInt($el_product.find('#quantity').val());
-          if(quantity>0){
-            $el_product.find('#quantity').val(quantity - 1);
-          }
-      });
-
-    });
-
-  }
-
-  // init jarallax parallax
-  var initJarallax = function() {
-    jarallax(document.querySelectorAll(".jarallax"));
-
-    jarallax(document.querySelectorAll(".jarallax-keep-img"), {
-      keepImg: true,
-    });
-  }
-
-  // document ready
-  $(document).ready(function() {
-    
-    initPreloader();
-    initSwiper();
-    initProductQty();
-    initJarallax();
-    initChocolat();
-
-        // product single page
-        var thumb_slider = new Swiper(".product-thumbnail-slider", {
-          spaceBetween: 8,
-          slidesPerView: 3,
-          freeMode: true,
-          watchSlidesProgress: true,
+            // Cập nhật văn bản mô tả dựa trên số sao
+            switch (rating) {
+                case '1':
+                    ratingText.textContent = 'Tệ';
+                    break;
+                case '2':
+                    ratingText.textContent = 'Không hài lòng';
+                    break;
+                case '3':
+                    ratingText.textContent = 'Bình thường';
+                    break;
+                case '4':
+                    ratingText.textContent = 'Hài lòng';
+                    break;
+                case '5':
+                    ratingText.textContent = 'Tuyệt vời';
+                    break;
+                default:
+                    ratingText.textContent = '';
+            }
         });
-    
-        var large_slider = new Swiper(".product-large-slider", {
-          spaceBetween: 10,
-          slidesPerView: 1,
-          effect: 'fade',
-          thumbs: {
-            swiper: thumb_slider,
-          },
-        });
-
-    window.addEventListener("load", (event) => {
-      //isotope
-      $('.isotope-container').isotope({
-        // options
-        itemSelector: '.item',
-        layoutMode: 'masonry'
-      });
-
-
-      var $grid = $('.entry-container').isotope({
-        itemSelector: '.entry-item',
-        layoutMode: 'masonry'
-      });
-
-
-      // Initialize Isotope
-      var $container = $('.isotope-container').isotope({
-        // options
-        itemSelector: '.item',
-        layoutMode: 'masonry'
-      });
-
-      $(document).ready(function () {
-        //active button
-        $('.filter-button').click(function () {
-          $('.filter-button').removeClass('active');
-          $(this).addClass('active');
-        });
-      });
-
-      // Filter items on button click
-      $('.filter-button').click(function () {
-        var filterValue = $(this).attr('data-filter');
-        if (filterValue === '*') {
-          // Show all items
-          $container.isotope({ filter: '*' });
-        } else {
-          // Show filtered items
-          $container.isotope({ filter: filterValue });
-        }
-      });
-
     });
-
-  }); // End of a document
-
-})(jQuery);
+});

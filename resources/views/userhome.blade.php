@@ -206,7 +206,7 @@
                 <input
                   type="text"
                   class="header__search-input"
-                  placeholder="Nhập để tìm kiếm sản phẩm"
+                  placeholder="Nhập để tìm kiếm xe"
                 />
 
                 <!-- Search history -->
@@ -266,7 +266,7 @@
                   <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
                   <!-- Cart item -->
                   <ul class="header__cart-list-item">
-                    <li class="header__cart-item">
+                    <li class="header__cart-item" onclick="window.location.href='/detail/{{ $like->ID_TIN }}';" style="cursor: pointer;" method="post" >
                       <img
                         src="https://img.tickid.vn/photos/resized/320x/83-1580889448-myphamohui-lgvina.png"
                         alt=""

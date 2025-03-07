@@ -1,0 +1,11 @@
+.header {
+  
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /*để đảm bảo header hiển thị trên các phần tử khác trên trang*/
+  }
+  * {  
+    box-sizing: border-box;  
+}  

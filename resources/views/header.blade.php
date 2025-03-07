@@ -1,28 +1,7 @@
+@yield('header')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CTRent-Home</title>
-    <link rel="icon" href="images/logo2.png">
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/grid.css" />
-    <link rel="stylesheet" href="css/news.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="css/all.min.css"
-    />
-</head>
-  <header class="header">
+<header class="header">
+  
         <div class="grid wide">
           <nav class="header__navbar hide-on-mobile-tablet">
             <ul class="header__navbar-list">
@@ -30,7 +9,8 @@
                 class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate"
               >
                 Hello
-                <!-- Header QR Code -->
+        
+        <!-- Header QR Code -->
                 <div class="header__qr">
                   <img
                     src="images/qr_code.png"
@@ -153,27 +133,27 @@
                   Tiếng Việt
                 </a>
               </li>
+
               <?php
-              if(isset($_SESSION['email']) || isset($_SESSION['password'])) {
-                echo '';
-                // Nếu đã đăng nhập,hiển thị nút tài khoản
-                
-            } else {
-                // Nếu chưa đăng nhập, hiển thị nút đăng nhập
-                echo '<li
-                        class="header__navbar-item header__navbar-item--strong header__navbar-item--separate"
-                      >
-                        Đăng ký
-                      </li>';
-                echo '<li class="header__navbar-item header__navbar-item--strong">
-                        Đăng Nhập
-                      </li>';
-            }
-              ?>
-              <li class="header__navbar-item header__navbar-user">
-                <img                
-                  src="<?php $avt = Session::get('avt');
-			          if($avt){ echo $avt; } ?>"
+
+              $idTK = Session::get('IDTK');
+              // $avt = Session::get('avt');
+              // $HOTEN = Session::get('HOTEN');
+              
+              if($idTK != NULL){
+                ?>
+                 <li class="header__navbar-item header__navbar-user">
+                <a href="{{URL::to('/chat')}}" class="header__navbar-item-link">
+                <i class="material-icons">
+                  message
+                  </i>
+                  Tin Nhắn
+                </li>
+                  <li class="header__navbar-item header__navbar-user">
+                <img               
+                  src="<?php 
+                  $avt = Session::get('avt');
+			            if($avt){ echo $avt; } ?>"
                   alt=""
                   class="header__navbar-user-img"                  
                 />
@@ -189,7 +169,7 @@
                     <a href="">Tài khoản của tôi</a>
                   </li>
                   <li class="header__navbar-user-item">
-                    <a href="">Địa chỉ của tôi</a>
+                    <a href="">Đơn bán</a>
                   </li>
                   <li class="header__navbar-user-item">
                     <a href="">Đơn mua</a>
@@ -197,8 +177,20 @@
                   <li
                     class="header__navbar-user-item header__navbar-user-item--separate"
                   >
-                    <a href="{{URL::to('/home')}}" method="post" name="logout">Đăng xuất</a>
+                    <a href="{{URL::to('/logout')}}" method="post" name="logout">Đăng xuất</a>
+                </li>
+                
+                <?php } else {?>
+                  <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate" >
+                        <a href="{{URL::to('')}}">Đăng Nhập</a>
                   </li>
+                  <li class="header__navbar-item header__navbar-item--strong" >
+                    <a href="{{URL::to('/dangky')}}">Đăng Ký</a>
+                  </li>  
+               
+
+                <?php }
+                    ?>
                 </ul>
               </li>
             </ul>
@@ -212,8 +204,8 @@
 
             <!-- Header Logo -->
             <div class="header__logo hide-on-tablet">
-              <a href="/" class="header__logo-link">
-                <img src= "images/logo.png" class="header__logo-img">
+              <a href="/home" class="header__logo-link">
+                <img src= "images/logo2.png" class="header__logo-img">
               </a>
             </div>
             <input
@@ -223,9 +215,13 @@
               class="header__search-checkbox"
             />
             <!-- Header Search -->
-            <div class="header__search ">
+            <div class="header__search " action="{{URL::to('/search')}}" method="POST">
+              
               <div class="header__search-input-wrap">
-                <input
+                @csrf
+                <input 
+                  
+                  name="keywordsubmit"
                   type="text"
                   class="header__search-input"
                   placeholder="Nhập để tìm kiếm sản phẩm"
@@ -237,16 +233,24 @@
                     Lịch sử tìm kiếm
                   </h3>
                   <ul class="header__search-history-list">
+                  @if(isset($getsearch) && count($getsearch) >0)
+                  @foreach($getsearch as $key => $search)
                     <li class="header__search-history-item">
-                      <a href="">Xe số</a>
+                      <a href="">{{$search->WORD}}</a>
+                      <a type="submit" class="history-search-remove">Xóa</a> 
                     </li>
+                    @endforeach
+                    @endif
                     <li class="header__search-history-item">
                       <a href="">Xe ga</a>
+                    </li>
+                    <li class="header__search-history-item">
+                      <a href="">Xe số</a>
                     </li>
                   </ul>
                 </div>
               </div>
-              <button class="header__search-btn">
+              <button  type="submit" class="header__search-btn">
                 <i class="material-icons" style="color:while">search</i>
               </button>
             </div>
@@ -256,7 +260,9 @@
               <div class="header__cart-wrap">
                 <i class="header__cart-icon fas fa-shopping-cart" style="background-image: url('images/ic/like.png'); background-size: contain;
   background-repeat: no-repeat;"></i>
-                <span class="header__cart-notice">3</span>
+              
+              
+                <span class="header__cart-notice">{{$count}}</span>
                 <!-- No cart : header__cart-list--no-cart -->
                 <div class="header__cart-list ">
                   <!-- Nocart -->
@@ -266,73 +272,48 @@
                     class="header__cart-no-cart-img"
                   />
                   <span class="header__cart-list-no-cart-msg">
-                    Chưa có tin
+                    Chưa có sản phẩm
                   </span>
                   <!-- Hascart -->
-                  <h4 class="header__cart-heading">Tin đăng đã lưu</h4>
+                  <h4 class="header__cart-heading">Tin đã lưu</h4>
                   <!-- Cart item -->
                   <ul class="header__cart-list-item">
-                    @if(isset($getlike_user)&& count($getlike_user) > 0)
-                    @foreach($getlike_user as $key => $like)
-                    <li class="header__cart-item">
+                  @if(isset($getlike_user)&& count($getlike_user) > 0)
+                  @foreach($getlike_user as $key => $like)
+                    <li class="header__cart-item"  >
                       <img
                         src="{{$like->DUONGDAN}}"
                         alt=""
                         class="header__cart-img"
                       />
                       <div class="header__cart-item-info">
-                        <div class="header__cart-item-head">
+                        <div class="header__cart-item-head" onclick="window.location.href='/detail/{{ $like->ID_TIN }}';" style="cursor: pointer;" method="post">
                           <h5 class="header__cart-item-name">
                             {{$like->TIEUDE}}
                           </h5>
                           <div class="header__cart-item-price-wrap">
                             <span class="header__cart-item-price"
-                              >2.000.000đ</span
-                            >
-                            <span class="header__cart-item-multiply">x</span>
-                            <span class="header__cart-item-qnt">2</span>
+                              >{{$like->PRICE}}</span>
+                            
                           </div>
                         </div>
                         <div class="header__cart-item-body">
-                          <span class="header__cart-item-description"
-                            >Phân loại : Bạc</span
-                          >
-                          <span class="header__cart-item-remove">Xóa</span>
+                          <span class="header__cart-item-description">{{timeAgo($like->timepost)}}</span > 
+                          
+                          <form action="{{ route('likes.delete', $like->ID_LIKE) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa không?');">  
+                        @csrf  
+                        @method('DELETE')  
+                        <button type="submit" class="header__cart-item-remove">Xóa</button>  
+                        </form>  
+                          
                         </div>
                       </div>
                     </li>
                     @endforeach
                     @else
-                    <p>Khoong co du kieu</p>
+                    <p>Không có tin</p>
                     @endif
-                   
-                    <li class="header__cart-item">
-                      <img
-                        src="https://img.tickid.vn/photos/resized/320x/83-1580887317-myphamohui-lgvina.png"
-                        alt=""
-                        class="header__cart-img"
-                      />
-                      <div class="header__cart-item-info">
-                        <div class="header__cart-item-head">
-                          <h5 class="header__cart-item-name">
-                            Set dưỡng ẩm whoo vàng
-                          </h5>
-                          <div class="header__cart-item-price-wrap">
-                            <span class="header__cart-item-price"
-                              >3.105.000đ
-                            </span>
-                            <span class="header__cart-item-multiply">x</span>
-                            <span class="header__cart-item-qnt">1</span>
-                          </div>
-                        </div>
-                        <div class="header__cart-item-body">
-                          <span class="header__cart-item-description"
-                            >Phân loại : MD</span
-                          >
-                          <span class="header__cart-item-remove">Xóa</span>
-                        </div>
-                      </div>
-                    </li>
+                    
                     <li class="header__cart-item">
                       <img
                         src="https://img.tickid.vn/photos/resized/320x/83-1580884899-myphamohui-lgvina.png"
@@ -348,8 +329,7 @@
                             <span class="header__cart-item-price"
                               >11.610.000đ
                             </span>
-                            <span class="header__cart-item-multiply">x</span>
-                            <span class="header__cart-item-qnt">3</span>
+                            
                           </div>
                         </div>
                         <div class="header__cart-item-body">
@@ -362,19 +342,11 @@
                     </li>
                   </ul>
                   <a href="#" class="header__cart-view-cart btn btn--primary"
-                    >Xem giỏ hàng</a
+                    >Xem tin đã lưu</a
                   >
                 </div>
               </div>
-              <button href="..views\login.blade.php" class="buttuon_head" style="  background: #ffffff;
-    border-color: #101090;
-    text-align: center;
-    width: 90px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 9px;
-    font-size: 13px;
-    font-weight: bold;"> ĐĂNG TIN</button>
+              <button  href="{{URL::to('/news')}}" class="buttuon_head"  onclick="window.location.href='/news'"> ĐĂNG TIN</button>
 
               <!-- <a class="header__cart-wrap"> Đăng Tin</a> -->
             </div>
@@ -395,5 +367,4 @@
           </li>
         </ul>
       </header>
-
-
+      

@@ -188,6 +188,10 @@ html {
   color: var(--text-color);
   display: block;
   padding: 8px 0;
+  background: none; /* Loại bỏ màu nền mặc định cho nút */
+  border: none; /* Loại bỏ viền mặc định của nút */
+  cursor: pointer; /* Hiển thị con trỏ dạng tay khi hover trên nút */
+  text-align: left; /* Căn trái cho cả nút và link */
 }
 
 .select-input__link:hover{
