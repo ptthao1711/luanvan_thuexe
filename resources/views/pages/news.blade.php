@@ -357,6 +357,7 @@
 <!-- script xử lý tải ảnh lên --> 
       <script>
         
+        
           const imageUpload = document.getElementById('image-upload');
           const imagePreview = document.getElementById('image-preview');
           const removeImageBtn = document.getElementById('remove-image');

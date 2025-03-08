@@ -129,7 +129,7 @@ public function paymentReturn(Request $request)
         'vnpSecureHash' => $vnpSecureHash,
     ]);
 
-    // //So sánh chữ ký
+    // 
     // if ($secureHash !== $vnpSecureHash) {
     //     return redirect()->route('thanks')->with('error', 'Dữ liệu không hợp lệ!');
     // }

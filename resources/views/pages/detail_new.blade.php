@@ -327,8 +327,7 @@
                           </div>
                         </div>
                         <div class="header__cart-item-body">
-                          <span class="header__cart-item-description"
-                            ></span>
+                          <span class="header__cart-item-description"></span>
                           <form action="{{ route('likes.delete', $like->ID_TIN) }}" method="POST" onsubmit="return confirm('Bạn có chắc chắn muốn xóa không?');">  
                         @csrf  
                         @method('DELETE')  

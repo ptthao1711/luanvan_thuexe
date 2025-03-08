@@ -491,7 +491,7 @@
   </div>
 </body>
 </div>
-<!-- -------------------------------------------------- đánh giá--------------- -->
+<!-- --------------------------------------------------Modal đánh giá--------------- -->
                                     @if(isset($order))
                                     <form action="{{ route('danhgia') }}" method="POST" enctype="multipart/form-data">
                                     @csrf
@@ -547,7 +547,7 @@
                                 </div>
                                 </form>
                                 
-                                <!-- Modal -->
+                                <!-- Modal hủy đơn -->
                                <form action="{{ route('confirm.huy') }}" method="POST" style="display:inline;">
                                   @csrf
                                   <input type="hidden" name="ID_ORDER" value="{{$order->ID_ORDER}}">

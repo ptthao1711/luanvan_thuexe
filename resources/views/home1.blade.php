@@ -184,8 +184,7 @@
                       <div class="home-product-item__origin">
                         <span class="home-product-item__brand">Thời Gian</span>
                         <span class="home-product-item__origin-name"
-                          >Cần Thơ</span
-                        >
+                          >Cần Thơ</span>
                       </div>
                       <div class="home-product-item__favourite">
                         <i class="fas fa-check "></i>

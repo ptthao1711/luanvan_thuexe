@@ -9,11 +9,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderThankYouMail;
+use Session;
 
-use Session; // dùng để  lưu tạm các message sau khi thực hiện một công việc gì đó.
-use App\Http\Requests; // dùng để lấy dữ liệu từ form
-use Illuminate\Support\Facades\Redirect; // dùng để chuyển hướng
-use function Laravel\Prompts\select;
 
 session_start();
 class OrderController extends Controller{
@@ -167,7 +164,6 @@ class OrderController extends Controller{
            
             $image = $request->file('image');
             
-            // Tạo tên ảnh duy nhất dựa trên thời gian hiện tại và phần mở rộng của ảnh
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             
             $image->move(public_path('images/danhgia'), $imageName);
@@ -579,10 +575,9 @@ public function confirm_datlai(Request $request){
         ->update(['ID_TT' =>1]);
 
     if ($updateOrder) {
-        // Nếu cập nhật thành công, chuyển hướng về trang trước với thông báo thành công
+        
         return redirect()->back()->with('thanhcong', 'Đặt thành công!');
     } else {
-        // Nếu có lỗi, chuyển hướng về trang trước với thông báo lỗi
         return redirect()->back()->withErrors(['huy' => 'Có lỗi xảy ra, vui lòng thử lại sau.']);
     }
 
@@ -663,7 +658,7 @@ public function confirm_datlai(Request $request){
                 'anhdg' => $path,
             ];
             
-            //dd($data); // Tạm dừng để kiểm tra dữ liệu
+            //dd($data); 
     
             DB::table('danhgia_ngthue')->insert($data);
             // DB::table('orders')->where('ID_ORDER', $orderId)->update(['ID_TT' => 4]);

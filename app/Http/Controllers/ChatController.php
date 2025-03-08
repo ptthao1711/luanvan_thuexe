@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use App\Http\Controllers\UserController;
-
 use Session;
 
 class ChatController extends Controller{
@@ -58,13 +56,10 @@ class ChatController extends Controller{
          ->orWhere('IDTK2',$idTK) 
          ->get()
          ->map(function ($conversation) use ($idTK) {
-            // Xác định ID của người dùng khác
             $otherUserId = $conversation->IDTK1 == $idTK ? $conversation->IDTK2 : $conversation->IDTK1;
             
-            // Lấy thông tin chi tiết của người dùng khác từ bảng `taikhoan_sinhvien`
             $otherUser = DB::table('taikhoan_sinhvien')->where('IDTK', $otherUserId)->first();
             
-            // Trả về thông tin hội thoại kèm thông tin người dùng khác
             return [
                 'ID_HT' => $conversation->ID_HT,
                 'created_at' => $conversation->created_at,
@@ -189,13 +184,11 @@ class ChatController extends Controller{
          ->orWhere('IDTK2',$idTK) 
          ->get()
          ->map(function ($conversation) use ($idTK) {
-            // Xác định ID của người dùng khác
+           
             $otherUserId = $conversation->IDTK1 == $idTK ? $conversation->IDTK2 : $conversation->IDTK1;
             
-            // Lấy thông tin chi tiết của người dùng khác từ bảng `taikhoan_sinhvien`
             $otherUser = DB::table('taikhoan_sinhvien')->where('IDTK', $otherUserId)->first();
             
-            // Trả về thông tin hội thoại kèm thông tin người dùng khác
             return [
                 'ID_HT' => $conversation->ID_HT,
                 'created_at' => $conversation->created_at,
@@ -238,7 +231,7 @@ class ChatController extends Controller{
             'ID_HT'=>$ID_HT,
             'IDTK' =>$idTK,
             'content'=>$send,
-            'timestamp' => Carbon::now(), // Lấy thời gian hiện tại // Nếu có cột timestamp
+            'timestamp' => Carbon::now(), 
         ]);
         
         return redirect()->back();
@@ -246,9 +239,8 @@ class ChatController extends Controller{
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
 public function chatwith(Request $request) {
-    $idTK = Session::get('IDTK');  // ID của người dùng hiện tại
-    $idTK2 = $request->input('IDTK'); // ID của người muốn trò chuyện cùng
-
+    $idTK = Session::get('IDTK'); 
+    $idTK2 = $request->input('IDTK'); 
     if (empty($idTK2)) {
         return redirect()->back()->with('error', 'Không tìm thấy ID người nhận.');
     }
@@ -265,7 +257,6 @@ public function chatwith(Request $request) {
         ->first();
 
     if ($getconvs === null) {
-        // Tạo hội thoại mới nếu chưa có
         $newConvID = DB::table('conversations')
             ->insertGetId([
                 'IDTK1' => $idTK,
@@ -277,7 +268,7 @@ public function chatwith(Request $request) {
 
         return  redirect()->route('chat', ['ID_HT' => $newConvID]);
     } else {
-        // Chuyển đến hội thoại hiện có nếu đã tồn tại
+        
         return redirect()->route('chat', ['ID_HT' => $getconvs->ID_HT]);
     }
 }

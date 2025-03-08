@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Mail\OrderThankYouMail;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\UserController;
+
 
 use Session; // dùng để  lưu tạm các message sau khi thực hiện một công việc gì đó.
 
@@ -166,10 +166,9 @@ class DetailController extends Controller{
         $pageView4 = DB::table('page_views')->where('IDP',4)->first();
 
         if ($pageView4 === null) {
-            // Tạo bản ghi đầu tiên nếu chưa có
             DB::table('page_views')->insert(['views' => 1]);
         } else {
-            // Tăng lượt truy cập lên 1 nếu đã có bản ghi
+            
             DB::table('page_views')->where('IDP', $pageView4->IDP)->increment('views');
         }
 
@@ -274,7 +273,6 @@ public function addlike($id_tin) {
            
             $orderID = DB::getPdo()->lastInsertId();
 
-            // Gửi email xác nhận
             Mail::raw("Cảm ơn bạn đã thuê xe tại CTRent.
 Đơn thuê xe của bạn đã được nhận và đang chờ xác nhận.
 Mã đơn thuê xe của bạn là: CTRENT " . $orderID ."

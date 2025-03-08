@@ -258,8 +258,7 @@
             <!-- Cart layout -->
             <div class="header__cart">
               <div class="header__cart-wrap">
-                <i class="header__cart-icon fas fa-shopping-cart" style="background-image: url('images/ic/like.png'); background-size: contain;
-  background-repeat: no-repeat;"></i>
+                <i class="header__cart-icon fas fa-shopping-cart" style="background-image: url('images/ic/like.png'); background-size: contain;background-repeat: no-repeat;"></i>
               
               
                 <span class="header__cart-notice">{{$count}}</span>

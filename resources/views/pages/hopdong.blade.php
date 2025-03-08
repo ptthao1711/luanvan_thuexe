@@ -185,7 +185,7 @@ document.getElementById('pdfButton').addEventListener('click', function() {
             heightRemaining -= pageHeight;
         }
         
-        // Lưu file PDF
+       
         pdf.save('HopDongThueXe.pdf');
     });
 });

@@ -480,17 +480,17 @@
               const removeImageBtn = document.getElementById('remove-image');
 
               imageUpload.addEventListener('change', function(event) {
-                  const file = event.target.files[0]; // Lấy file ảnh từ input
+                  const file = event.target.files[0]; 
                   if (file) {
-                      const reader = new FileReader(); // Tạo FileReader để đọc file
+                      const reader = new FileReader(); 
 
                       reader.onload = function(e) {
-                          imagePreview.src = e.target.result; // Đặt src cho ảnh với base64
-                          imagePreview.style.display = 'block'; // Hiển thị ảnh
-                          removeImageBtn.style.display = 'block'; // Hiển thị nút xóa ảnh
+                          imagePreview.src = e.target.result; 
+                          imagePreview.style.display = 'block'; 
+                          removeImageBtn.style.display = 'block'; 
                       }
 
-                      reader.readAsDataURL(file); // Đọc file dưới dạng URL
+                      reader.readAsDataURL(file); 
                   }
               });
 
@@ -510,13 +510,12 @@
                   $fileName = $_FILES['image-upload']['name'][$key];  
                   $fileTmpName = $_FILES['image-upload']['tmp_name'][$key];  
 
-                  // Đường dẫn thư mục lưu trữ (thay đổi đường dẫn nếu cần)  
+                 
                   $uploadDirectory = 'images/xe/';  
                   if (!is_dir($uploadDirectory)) {  
                       mkdir($uploadDirectory, 0755, true);  
                   }  
 
-                  // Di chuyển file đến thư mục chỉ định  
                   move_uploaded_file($fileTmpName, $uploadDirectory . $fileName);  
                   echo "<p>Đã tải lên: $fileName</p>";  
               }  

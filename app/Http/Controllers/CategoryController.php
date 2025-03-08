@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\Http\Controllers\UserController;
-
-use Session; // dùng để  lưu tạm các message sau khi thực hiện một công việc gì đó.
-use App\Http\Requests; // dùng để lấy dữ liệu từ form
-use Illuminate\Support\Facades\Redirect; // dùng để chuyển hướng
-use function Laravel\Prompts\select;
+use Session; 
 
 session_start();
-
 
 class CategoryController extends Controller
 {

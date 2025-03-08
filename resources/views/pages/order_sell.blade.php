@@ -407,12 +407,12 @@
                       <img src="{{ asset($order->DUONGDAN) }}" alt="Sản phẩm" class="product-image" onclick="window.location.href='/detail_order/{{ $order->ID_ORDER }}';"> 
                       <div class="product-details">  
                         <h2 class="product-title">{{ $order->TIEUDE }}</h2>  
-                        <p class="category">Phân loại : {{ $order->TEN_LOAI }}</p> <!-- Ensure 'category' exists -->
-                        <p class="quantity">Tình trạng: {{ $order->TenTTX }}</p>  <!-- Ensure 'quantity' exists -->
+                        <p class="category">Phân loại : {{ $order->TEN_LOAI }}</p> 
+                        <p class="quantity">Tình trạng: {{ $order->TenTTX }}</p>  
                         <p class="quantity">Đã gữi: {{timeAgo($order->timepost) }}</p>
                         <div class="price-info">  
                           <span class="original-price">{{ $order->original_price ?? '' }}</span>  
-                          <span class="discounted-price">{{ number_format($order->PRICE )}}/VNĐ</span> <!-- Use PRICE from the order -->
+                          <span class="discounted-price">{{ number_format($order->PRICE )}}/VNĐ</span> 
                         </div>  
                       </div>  
                     </div>  
@@ -576,13 +576,11 @@
                   $fileName = $_FILES['image-upload']['name'][$key];  
                   $fileTmpName = $_FILES['image-upload']['tmp_name'][$key];  
 
-                  // Đường dẫn thư mục lưu trữ (thay đổi đường dẫn nếu cần)  
                   $uploadDirectory = 'images/danhgia/';  
                   if (!is_dir($uploadDirectory)) {  
                       mkdir($uploadDirectory, 0755, true);  
                   }  
 
-                  // Di chuyển file đến thư mục chỉ định  
                   move_uploaded_file($fileTmpName, $uploadDirectory . $fileName);  
                   echo "<p>Đã tải lên: $fileName</p>";  
               }  
